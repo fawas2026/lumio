@@ -1,0 +1,11 @@
+{
+  "name": "lumio",
+  "version": "1.0.0",
+  "description": "Lumio: free streaming site with a zero-dependency Node backend",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  }
+}

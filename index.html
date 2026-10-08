@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumio: Free movies and series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens ===== */
+:root{color-scheme:dark;--bg:#0d0f14;--panel:#171a22;--panel2:#1f232e;--line:#2b303d;--txt:#f3f1ec;--mut:#9aa0b0;--a:#f6b73c;--a2:#ff8a5b;--ink:#1a1204;--r:14px;
+--disp:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;--body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--txt);font:400 16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--disp);margin:0;line-height:1.1}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+.wrap{padding:0 clamp(16px,4vw,56px)}
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:12px 24px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--a),var(--a2));color:var(--ink);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px var(--a)}
+.btn.ghost{background:rgba(255,255,255,.1);color:var(--txt);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18)}
+.btn.ghost:hover{box-shadow:none;background:rgba(255,255,255,.18)}
+.btn.sm{padding:7px 14px;font-size:.85rem}
+.ib{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--panel2);cursor:pointer;font-size:1rem;transition:.2s}
+.ib:hover,.ib.on{background:var(--a);color:var(--ink);border-color:var(--a)}
+/* ===== Nav ===== */
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;height:68px;padding:0 clamp(16px,4vw,56px);background:linear-gradient(var(--bg),rgba(13,15,20,.82));backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05)}
+.logo{font:800 1.6rem var(--disp);letter-spacing:-.02em;display:flex;align-items:center;gap:8px;cursor:pointer}
+.logo i{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff7da,var(--a) 45%,var(--a2));box-shadow:0 0 18px var(--a)}
+.links{display:flex;gap:4px}
+.links a{padding:8px 14px;border-radius:999px;color:var(--mut);font-weight:500;transition:.2s}
+.links a:hover,.links a.on{color:var(--txt);background:rgba(255,255,255,.08)}
+.sp{flex:1}
+.search{display:flex;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:0 6px 0 14px;transition:.25s;width:210px}
+.search:focus-within{border-color:var(--a);width:290px}
+.search input{background:none;border:0;outline:0;width:100%;height:38px}
+.menu{display:none}
+/* ===== Hero ===== */
+.hero{position:relative;min-height:clamp(440px,74vh,680px);display:flex;align-items:flex-end;overflow:hidden;margin-top:-68px;padding-bottom:70px;--h:260}
+.art{position:absolute;inset:0;background:radial-gradient(60% 80% at 78% 30%,hsl(var(--h) 80% 48%/.75),transparent 70%),radial-gradient(40% 50% at 95% 90%,hsl(calc(var(--h) + 70) 80% 45%/.5),transparent 70%),linear-gradient(120deg,hsl(var(--h) 55% 14%),#0a0b10)}
+.art::before{content:"";position:absolute;right:8%;top:16%;width:min(38vw,420px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.16);box-shadow:0 0 0 38px rgba(255,255,255,.03),0 0 0 80px rgba(255,255,255,.02)}
+.art::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 4%,transparent 55%),linear-gradient(90deg,rgba(13,15,20,.85),transparent 65%)}
+.hero .in{position:relative;max-width:620px;animation:rise .8s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.hero h1{font-size:clamp(2.4rem,6.5vw,4.6rem);font-weight:800;letter-spacing:-.03em;margin:12px 0}
+.hero p{color:#d6d4cd;font-size:1.05rem;max-width:520px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--mut);font-size:.92rem}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:4px 12px;font-size:.85rem;color:var(--txt);cursor:pointer;transition:.2s}
+.chip:hover,.chip.on{background:var(--a);color:var(--ink);border-color:var(--a)}
+.star{color:var(--a);font-weight:700}
+.acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.dots{position:absolute;right:clamp(16px,4vw,56px);bottom:70px;display:flex;gap:8px}
+.dots b{width:9px;height:9px;border-radius:9px;background:rgba(255,255,255,.3);cursor:pointer;transition:.3s}
+.dots b.on{width:28px;background:var(--a)}
+/* ===== Rows and cards ===== */
+.sec{margin:34px 0 8px}
+.sec header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sec h2{font-size:1.4rem;font-weight:700}
+.arrows{display:flex;gap:8px}
+.row{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 2px 18px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.row .card{flex:0 0 clamp(150px,17vw,200px);scroll-snap-align:start}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(140px,40vw,190px),1fr));gap:20px}
+.card{cursor:pointer;transition:transform .25s}
+.card:hover{transform:translateY(-6px)}
+.poster{--h:200;position:relative;aspect-ratio:2/3;border-radius:var(--r);overflow:hidden;display:flex;align-items:flex-end;padding:12px;background:radial-gradient(90% 60% at 80% 12%,hsl(calc(var(--h) + 40) 80% 55%/.55),transparent 70%),linear-gradient(165deg,hsl(var(--h) 60% 34%),hsl(calc(var(--h) + 55) 65% 10%));box-shadow:0 10px 28px -12px #000;transition:box-shadow .25s}
+.card:hover .poster{box-shadow:0 18px 36px -10px hsl(var(--h) 80% 40%/.7)}
+.poster::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.2);right:-18%;top:6%}
+.pt{position:relative;font:800 1.25rem/1.05 var(--disp);letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.rate{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border-radius:999px;padding:2px 9px;font-size:.78rem;font-weight:700;color:var(--a)}
+.tag{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.14);border-radius:6px;padding:1px 7px;font-size:.7rem}
+.bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.2)}
+.bar i{display:block;height:100%;background:var(--a)}
+.ci{padding:10px 2px 0}
+.ci h3{font:700 .98rem var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci p{margin:2px 0 8px;color:var(--mut);font-size:.82rem;display:flex;gap:10px}
+.cr{display:flex;justify-content:space-between;align-items:center}
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.tile{flex:0 0 160px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:16px;border-radius:var(--r);border:1px solid var(--line);background:linear-gradient(160deg,var(--panel2),var(--panel));cursor:pointer;transition:transform .25s,border-color .25s}
+.tile:hover{transform:translateY(-5px);border-color:var(--a)}
+.tile .fl{font-size:2.2rem;line-height:1.1;margin-bottom:8px}
+.tile b{font:700 1.05rem var(--disp)}
+.tile small{color:var(--mut)}
+/* ===== Details ===== */
+.det{position:relative;margin-top:-68px;padding:130px 0 40px;--h:200;overflow:hidden}
+.det .art{opacity:.9}
+.dg{position:relative;display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:end}
+.dg .poster{box-shadow:0 24px 50px -16px #000}
+.det h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;letter-spacing:-.03em;margin:10px 0}
+.det p{color:#d6d4cd;max-width:640px}
+.cast{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cast span{background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.page{padding-top:100px;min-height:70vh}
+.page h1{font-size:2.2rem;margin-bottom:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.empty{color:var(--mut);padding:30px 0}
+/* ===== Auth and profile ===== */
+.auth{max-width:420px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:32px}
+.auth h1{font-size:2rem;margin-bottom:6px}
+.auth label{display:block;margin:16px 0 6px;color:var(--mut);font-size:.9rem}
+.auth input{width:100%;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--bg);padding:0 14px;outline:0}
+.auth input:focus{border-color:var(--a)}
+.auth .btn{width:100%;justify-content:center;margin-top:22px}
+.err{color:#ff8a8a;min-height:1.4em;margin-top:10px;font-size:.9rem}
+.who{display:flex;align-items:center;gap:18px;margin-bottom:10px}
+.av{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font:800 2rem var(--disp);background:linear-gradient(135deg,var(--a),var(--a2));color:var(--ink)}
+/* ===== Player and toast ===== */
+#pl{position:fixed;inset:0;z-index:100;background:rgba(5,6,9,.92);backdrop-filter:blur(10px);display:none;place-items:center;padding:16px}
+#pl.on{display:grid}
+.scr{width:min(940px,100%);aspect-ratio:16/9;border-radius:20px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(14px,3vw,28px);--h:200;box-shadow:0 30px 80px -20px #000}
+.scr h2{position:relative;font-size:clamp(1.3rem,3.5vw,2.4rem)}
+.scr small{position:relative;color:var(--mut)}
+.ctl{position:relative;display:flex;align-items:center;gap:14px;margin-top:14px}
+.ctl .tr{flex:1;height:6px;border-radius:6px;background:rgba(255,255,255,.2);cursor:pointer}
+.ctl .tr i{display:block;height:100%;border-radius:6px;background:var(--a)}
+.x{position:absolute;top:14px;right:14px;z-index:2}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:10px 20px;z-index:200;transition:.3s;pointer-events:none}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+footer{margin-top:60px;padding:30px 0 40px;border-top:1px solid var(--line);color:var(--mut);font-size:.9rem;text-align:center}
+/* ===== Responsive ===== */
+@media(max-width:860px){
+.menu{display:block}
+.links{position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--bg);padding:10px 16px;border-bottom:1px solid var(--line);display:none}
+.links.open{display:flex}
+.search,.search:focus-within{width:150px}
+.dg{grid-template-columns:1fr}.dg .poster{width:170px}
+.arrows{display:none}
+}
+@media(max-width:480px){.search{display:none}.hero{padding-bottom:56px}.dots{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <button class="ib menu" id="menu" aria-label="Menu">&#9776;</button>
+  <a class="logo" href="#/"><i></i>Lumio</a>
+  <div class="links" id="links">
+    <a href="#/" data-p="home">Home</a><a href="#/movies" data-p="movies">Movies</a>
+    <a href="#/series" data-p="series">Series</a><a href="#/categories" data-p="categories">Categories</a><a href="#/regions" data-p="regions">Regions</a>
+  </div>
+  <div class="sp"></div>
+  <label class="search"><span aria-hidden="true">&#128269;</span><input id="q" type="search" placeholder="Search titles" autocomplete="off" aria-label="Search titles"></label>
+  <span id="acct"></span>
+</nav>
+<main id="app"></main>
+<footer class="wrap">Lumio is free to use. Create an account and start watching. No payment, ever.</footer>
+<div id="pl" role="dialog" aria-label="Player"></div>
+<div id="toast"></div>
+
+<script>
+/* ===== Data (original, fictional titles) ===== */
+let M=[],GENRES=[];
+const byId=id=>M.find(m=>m.id==id);
+const FEATURED=[1,24,2,15];
+const CO={Nigeria:['\u{1F1F3}\u{1F1EC}','Africa'],Ghana:['\u{1F1EC}\u{1F1ED}','Africa'],'South Africa':['\u{1F1FF}\u{1F1E6}','Africa'],Kenya:['\u{1F1F0}\u{1F1EA}','Africa'],'United Kingdom':['\u{1F1EC}\u{1F1E7}','Europe'],France:['\u{1F1EB}\u{1F1F7}','Europe'],Spain:['\u{1F1EA}\u{1F1F8}','Europe'],'United States':['\u{1F1FA}\u{1F1F8}','Americas'],India:['\u{1F1EE}\u{1F1F3}','Asia'],Japan:['\u{1F1EF}\u{1F1F5}','Asia'],'South Korea':['\u{1F1F0}\u{1F1F7}','Asia']};
+const cnt=c=>M.filter(m=>m.c===c).length;
+
+/* ===== API client (talks to the Lumio server) ===== */
+const tk={get(){try{return localStorage.getItem('lumio_token')}catch(e){return tk.m}},set(v){tk.m=v;try{v?localStorage.setItem('lumio_token',v):localStorage.removeItem('lumio_token')}catch(e){}}};
+async function api(path,method='GET',body){
+  const r=await fetch('/api'+path,{method,headers:{'Content-Type':'application/json',...(tk.get()?{Authorization:'Bearer '+tk.get()}:{})},body:body?JSON.stringify(body):undefined});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(j.error||'Something went wrong. Try again.');
+  return j;
+}
+let ME=null;                       /* {name,email,list:[ids],prog:{id:percent}} */
+const user=()=>ME;
+const sync=p=>p.catch(e=>toast(e.message));
+let pgT=0,pgId=0;                  /* progress is sent at most every 4 seconds */
+const flushPg=()=>{if(!pgT)return;clearTimeout(pgT);pgT=0;sync(api('/progress/'+pgId,'PUT',{percent:ME.prog[pgId]}))};
+const savePg=id=>{pgId=id;if(!pgT)pgT=setTimeout(flushPg,4000)};
+
+/* ===== Helpers ===== */
+const $=(s,e=document)=>e.querySelector(s);
+const app=$('#app');
+let heroTimer,playTimer,next='#/';
+const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)};
+const inList=id=>{const u=user();return u&&u.list.includes(id)};
+const prog=id=>{const u=user();return u?(u.prog[id]||0):0};
+
+/* ===== Components ===== */
+const card=m=>`<article class="card" data-go="#/title/${m.id}"><div class="poster" style="--h:${m.h}"><span class="rate">&#9733; ${m.r}</span><span class="tag">${m.type==='series'?'Series':'Movie'}</span><span class="pt">${m.t}</span>${prog(m.id)?`<div class="bar"><i style="width:${prog(m.id)}%"></i></div>`:''}</div>
+<div class="ci"><h3>${m.t}</h3><p><span>${m.y}</span><span>${m.g.join(', ')}</span></p>
+<div class="cr"><button class="btn sm" data-watch="${m.id}">&#9654; Watch</button><button class="ib ${inList(m.id)?'on':''}" data-list="${m.id}" aria-label="Toggle watchlist">${inList(m.id)?'&#10003;':'+'}</button></div></div></article>`;
+const rowSec=(title,list)=>list.length?`<section class="sec wrap"><header><h2>${title}</h2><div class="arrows"><button class="ib" data-sc="-1" aria-label="Scroll left">&#8249;</button><button class="ib" data-sc="1" aria-label="Scroll right">&#8250;</button></div></header><div class="row">${list.map(card).join('')}</div></section>`:'';
+const gridOf=l=>l.length?`<div class="grid">${l.map(card).join('')}</div>`:`<p class="empty">No titles match yet. Try another word or browse Categories.</p>`;
+const chipsFor=(cur,base)=>`<div class="chips">${['All',...GENRES].map(g=>`<button class="chip ${g===cur?'on':''}" data-go="${base}${g==='All'?'':'/'+g}">${g}</button>`).join('')}</div>`;
+const metaOf=m=>`<div class="meta"><span class="star">&#9733; ${m.r}</span><span>${m.y}</span>${m.g.map(g=>`<span class="chip" data-go="#/categories/${g}">${g}</span>`).join('')}<span class="chip" data-go="#/regions/${m.c}">${CO[m.c][0]} ${m.c}</span></div>`;
+const tile=c=>`<button class="tile" data-go="#/regions/${c}"><span class="fl">${CO[c][0]}</span><b>${c}</b><small>${cnt(c)} title${cnt(c)>1?'s':''}</small></button>`;
+
+/* ===== Pages ===== */
+function home(){
+  let i=0;const F=FEATURED.map(byId);
+  const heroHTML=m=>`<section class="hero" style="--h:${m.h}"><div class="art"></div><div class="wrap in" key="${m.id}">${metaOf(m)}<h1>${m.t}</h1><p>${m.d}</p><div class="acts"><button class="btn" data-watch="${m.id}">&#9654; Watch Now</button><button class="btn ghost" data-go="#/title/${m.id}">More Info</button></div></div><div class="dots">${F.map((f,k)=>`<b class="${f===m?'on':''}" data-hero="${k}"></b>`).join('')}</div></section>`;
+  app.innerHTML=`<div id="hero">${heroHTML(F[0])}</div>`+secs();
+  window.setHero=k=>{i=k;$('#hero').innerHTML=heroHTML(F[i])};
+  heroTimer=setInterval(()=>setHero((i+1)%F.length),7000);
+}
+function secs(){
+  const u=user();
+  const cont=u?Object.keys(u.prog).filter(id=>u.prog[id]>0&&u.prog[id]<100).map(byId):[];
+  const liked=u&&u.list.length?[...new Set(u.list.flatMap(id=>byId(id).g))]:[];
+  const rec=M.filter(m=>!inList(m.id)&&(liked.length?m.g.some(g=>liked.includes(g)):m.r>=8.2)).sort((a,b)=>b.r-a.r).slice(0,10);
+  return rowSec('Continue Watching',cont)
+  +rowSec('Trending Now',[24,1,15,2,5,19,4,10,21,3].map(byId))
+  +`<section class="sec wrap"><header><h2>Explore by Region</h2><button class="chip" data-go="#/regions">See all regions</button></header><div class="row">${Object.keys(CO).filter(cnt).map(tile).join('')}</div></section>`
+  +rowSec('Popular Movies',M.filter(m=>m.type==='movie').sort((a,b)=>b.r-a.r).slice(0,10))
+  +rowSec('New Releases',M.filter(m=>m.y>=2026))
+  +rowSec('Action',M.filter(m=>m.g.includes('Action')))
+  +rowSec('Comedy',M.filter(m=>m.g.includes('Comedy')))
+  +rowSec('Drama',M.filter(m=>m.g.includes('Drama')))
+  +rowSec('Nigerian Movies',M.filter(m=>m.ng))
+  +rowSec('Recommended For You',rec);
+}
+function listing(type,g){
+  const l=M.filter(m=>(!type||m.type===type)&&(!g||m.g.includes(g)));
+  const name=type==='movie'?'Movies':'Series';
+  app.innerHTML=`<div class="wrap page"><h1>${name}</h1>${chipsFor(g||'All','#/'+type+'s')}${gridOf(l)}</div>`;
+}
+function categories(g){
+  app.innerHTML=`<div class="wrap page"><h1>${g||'Categories'}</h1>${chipsFor(g||'',' #/categories'.trim())}${g?gridOf(M.filter(m=>m.g.includes(g))):GENRES.map(x=>rowSec(x,M.filter(m=>m.g.includes(x)))).join('')}</div>`;
+}
+function search(q){
+  const l=M.filter(m=>m.t.toLowerCase().includes(q.toLowerCase()));
+  app.innerHTML=`<div class="wrap page"><h1>Results for "${q.replace(/[<>&"]/g,'')}"</h1>${gridOf(l)}</div>`;
+}
+function detail(id){
+  const m=byId(id);if(!m)return app.innerHTML='<div class="wrap page"><h1>Title not found</h1><button class="btn" data-go="#/">Back home</button></div>';
+  const rel=M.filter(x=>x.id!==m.id&&x.g.some(g=>m.g.includes(g))).sort((a,b)=>b.r-a.r).slice(0,10);
+  app.innerHTML=`<section class="det" style="--h:${m.h}"><div class="art"></div><div class="wrap dg"><div class="poster" style="--h:${m.h}"><span class="rate">&#9733; ${m.r}</span><span class="pt">${m.t}</span></div>
+  <div>${metaOf(m)}<h1>${m.t}</h1><p>${m.d} ${m.type==='series'?'A full season is ready to watch.':'Runs about 1h 52m.'}</p>
+  <div class="cast">${m.cast.map(c=>`<span>${c}</span>`).join('')}</div>
+  <div class="acts"><button class="btn" data-watch="${m.id}">&#9654; ${prog(m.id)>0&&prog(m.id)<100?'Resume':'Watch Now'}</button><button class="btn ghost" data-list="${m.id}">${inList(m.id)?'&#10003; In My List':'+ My List'}</button></div></div></div></section>${rowSec('Related Movies and Series',rel)}`;
+  scrollTo(0,0);
+}
+function regions(c){
+  if(c&&CO[c]){const l=M.filter(m=>m.c===c);
+    app.innerHTML=`<div class="wrap page"><button class="chip" data-go="#/regions">&#8249; All regions</button><h1 style="margin-top:14px">${CO[c][0]} ${c}</h1><p class="meta" style="margin:-8px 0 22px">${CO[c][1]}, ${l.length} title${l.length>1?'s':''}</p>${gridOf(l)}</div>`;return}
+  const conts=[...new Set(Object.values(CO).map(v=>v[1]))];
+  app.innerHTML=`<div class="wrap page"><h1>Explore by region</h1><p class="meta" style="margin:-8px 0 8px">Pick a country to see its movies and series.</p>${conts.map(k=>`<section class="sec"><header><h2>${k}</h2></header><div class="rg">${Object.keys(CO).filter(x=>CO[x][1]===k&&cnt(x)).map(tile).join('')}</div></section>`).join('')}</div>`;
+}
+function authPage(mode){
+  const su=mode==='signup';
+  app.innerHTML=`<div class="wrap page"><form class="auth" id="af"><h1>${su?'Create your account':'Welcome back'}</h1><div class="meta">${su?'Free forever. No card needed.':'Log in to keep watching.'}</div>
+  ${su?'<label for="n">Name</label><input id="n" required autocomplete="name">':''}<label for="e">Email</label><input id="e" type="email" required autocomplete="email"><label for="p">Password</label><input id="p" type="password" minlength="6" required autocomplete="${su?'new-password':'current-password'}">
+  <div class="err" id="er"></div><button class="btn">${su?'Sign up':'Log in'}</button>
+  <p class="meta" style="margin-top:16px">${su?'Already a member? <a href="#/login" class="star">Log in</a>':'New here? <a href="#/signup" class="star">Create a free account</a>'}</p></form></div>`;
+  $('#af').onsubmit=async e=>{e.preventDefault();$('#er').textContent='';
+    try{const j=await api(su?'/signup':'/login','POST',{name:su?$('#n').value.trim():undefined,email:$('#e').value.trim(),password:$('#p').value});
+      tk.set(j.token);ME=j.user;navUser();toast(`Welcome, ${ME.name.split(' ')[0]}`);const n=next;next='#/';location.hash=n}
+    catch(err){$('#er').textContent=err.message}};
+}
+function profile(){
+  const u=user();if(!u){next='#/profile';return location.hash='#/login'}
+  const cont=Object.keys(u.prog).filter(id=>u.prog[id]>0&&u.prog[id]<100).map(byId);
+  app.innerHTML=`<div class="wrap page"><div class="who"><div class="av">${u.name[0].toUpperCase()}</div><div><h1 style="margin:0">${u.name}</h1><div class="meta">${u.email}</div></div><div class="sp"></div><button class="btn ghost" id="lo">Log out</button></div>
+  ${rowSec('Continue Watching',cont)}<section class="sec"><header><h2>My Watchlist</h2></header>${u.list.length?gridOf(u.list.map(byId)):'<p class="empty">Your list is empty. Tap + on any title to save it here.</p>'}</section></div>`;
+  $('#lo').onclick=()=>{tk.set(null);ME=null;navUser();toast('Logged out');location.hash='#/'};
+}
+
+/* ===== Player (demo) ===== */
+function play(id){
+  const u=user();if(!u){next=location.hash;toast('Log in or sign up (free) to watch');return location.hash='#/login'}
+  const m=byId(id);let p=u.prog[id]>=100?0:(u.prog[id]||0),on=true;
+  $('#pl').innerHTML=`<div class="scr" style="--h:${m.h}"><div class="art" style="opacity:.9"></div><button class="ib x" id="px" aria-label="Close player">&#10005;</button><h2>${m.t}</h2><small>Demo player: connect your own video source to stream real content.</small>
+  <div class="ctl"><button class="ib" id="pp" aria-label="Play or pause">&#10074;&#10074;</button><div class="tr" id="tr"><i id="pb" style="width:${p}%"></i></div><small id="pc">${p}%</small></div></div>`;
+  $('#pl').classList.add('on');
+  const upd=()=>{$('#pb').style.width=p+'%';$('#pc').textContent=Math.round(p)+'%';u.prog[id]=Math.max(1,Math.round(p));savePg(id)};
+  clearInterval(playTimer);playTimer=setInterval(()=>{if(!on)return;p=Math.min(100,p+.8);upd();if(p>=100){on=false;$('#pp').innerHTML='&#9654;';toast('Finished watching')}},1000);
+  $('#pp').onclick=e=>{on=!on;e.currentTarget.innerHTML=on?'&#10074;&#10074;':'&#9654;'};
+  $('#tr').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();p=Math.round((e.clientX-r.left)/r.width*100);upd()};
+  $('#px').onclick=closePlayer;upd();
+}
+function closePlayer(){clearInterval(playTimer);flushPg();$('#pl').classList.remove('on');$('#pl').innerHTML='';route()}
+
+/* ===== Router ===== */
+function route(){
+  if(!M.length)return;clearInterval(heroTimer);scrollTo(0,0);
+  const [,pg,a]=(location.hash||'#/').slice(1).split('/').map(decodeURIComponent);
+  const page=!pg?'home':pg;
+  document.querySelectorAll('.links a').forEach(l=>l.classList.toggle('on',l.dataset.p===page));
+  $('#links').classList.remove('open');
+  if(page!=='search'&&document.activeElement!==$('#q'))$('#q').value='';
+  ({home:()=>home(),movies:()=>listing('movie',a),series:()=>listing('series',a),categories:()=>categories(a),regions:()=>regions(a),search:()=>search(a||''),title:()=>detail(a),login:()=>authPage('login'),signup:()=>authPage('signup'),profile:()=>profile()}[page]||home)();
+}
+function navUser(){const u=user();$('#acct').innerHTML=u?`<button class="btn sm" data-go="#/profile">${u.name.split(' ')[0]}</button>`:`<button class="btn sm" data-go="#/login">Login</button>`}
+
+/* ===== Events ===== */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-watch],[data-list],[data-go],[data-sc],[data-hero]');if(!t)return;
+  if(t.dataset.watch){e.stopPropagation();return play(t.dataset.watch)}
+  if(t.dataset.list){e.stopPropagation();const u=user();if(!u){next=location.hash;toast('Log in or sign up (free) to use your watchlist');return location.hash='#/login'}
+    const id=+t.dataset.list,k=u.list.indexOf(id);k<0?u.list.push(id):u.list.splice(k,1);sync(api('/watchlist/'+id,k<0?'PUT':'DELETE'));toast(k<0?'Added to My List':'Removed from My List');const y=scrollY;route();scrollTo(0,y);return}
+  if(t.dataset.sc){const r=t.closest('.sec').querySelector('.row');return r.scrollBy({left:t.dataset.sc*r.clientWidth*.8,behavior:'smooth'})}
+  if(t.dataset.hero){clearInterval(heroTimer);return window.setHero(+t.dataset.hero)}
+  location.hash=t.dataset.go;
+});
+$('#q').addEventListener('input',e=>{const v=e.target.value.trim();location.replace(v?'#/search/'+encodeURIComponent(v):'#/')});
+$('#menu').onclick=()=>$('#links').classList.toggle('open');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#pl').classList.contains('on'))closePlayer()});
+addEventListener('hashchange',route);
+(async()=>{
+  try{
+    M=await api('/titles');GENRES=[...new Set(M.flatMap(m=>m.g))].sort();
+    if(tk.get())try{ME=await api('/me')}catch(e){tk.set(null)}
+  }catch(e){app.innerHTML='<div class="wrap page"><h1>Can\'t reach the server</h1><p class="empty">Start Lumio with <b>npm start</b>, then open http://localhost:3000.</p></div>';return}
+  navUser();route();
+})();
+</script>
+</body>
+</html>

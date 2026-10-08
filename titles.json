@@ -1,0 +1,498 @@
+[
+ {
+  "id": 1,
+  "t": "Neon Harbor",
+  "y": 2026,
+  "g": [
+   "Action",
+   "Thriller"
+  ],
+  "r": 8.4,
+  "type": "movie",
+  "ng": 0,
+  "d": "A dockside courier uncovers a city-wide plot hidden in a night of glowing rain.",
+  "h": 47,
+  "cast": [
+   "Jonas Reed",
+   "Zara Whitlock",
+   "Noor Haddad",
+   "Chidi Eze"
+  ],
+  "c": "Japan"
+ },
+ {
+  "id": 2,
+  "t": "The Last Lantern",
+  "y": 2025,
+  "g": [
+   "Drama"
+  ],
+  "r": 8.7,
+  "type": "movie",
+  "ng": 0,
+  "d": "A retired lighthouse keeper guides one final ship home and settles an old debt.",
+  "h": 94,
+  "cast": [
+   "Zara Whitlock",
+   "Dayo Fashola",
+   "Theo Marsh",
+   "Tobi Adewale"
+  ],
+  "c": "United Kingdom"
+ },
+ {
+  "id": 3,
+  "t": "Danfo Dreams",
+  "y": 2026,
+  "g": [
+   "Comedy",
+   "Drama"
+  ],
+  "r": 7.9,
+  "type": "movie",
+  "ng": 1,
+  "d": "Three friends turn a battered yellow bus into the most talked-about ride in town.",
+  "h": 141,
+  "cast": [
+   "Dayo Fashola",
+   "Funmi Alade",
+   "Ada Okoye",
+   "Kemi Bakare"
+  ],
+  "c": "Nigeria"
+ },
+ {
+  "id": 4,
+  "t": "Quantum Drift",
+  "y": 2026,
+  "g": [
+   "Sci-Fi",
+   "Action"
+  ],
+  "r": 8.1,
+  "type": "series",
+  "ng": 0,
+  "d": "A salvage crew rides unstable time currents to save a colony that has not yet fallen.",
+  "h": 188,
+  "cast": [
+   "Funmi Alade",
+   "Ivy Lowell",
+   "Jonas Reed",
+   "Emeka Nwosu"
+  ],
+  "c": "United States"
+ },
+ {
+  "id": 5,
+  "t": "Eko Nights",
+  "y": 2025,
+  "g": [
+   "Drama",
+   "Romance"
+  ],
+  "r": 8.3,
+  "type": "movie",
+  "ng": 1,
+  "d": "Two strangers keep meeting across one long, glittering weekend in Lagos.",
+  "h": 235,
+  "cast": [
+   "Ivy Lowell",
+   "Mira Solano",
+   "Zara Whitlock",
+   "Noor Haddad"
+  ],
+  "c": "Nigeria"
+ },
+ {
+  "id": 6,
+  "t": "Salt and Ember",
+  "y": 2024,
+  "g": [
+   "Drama"
+  ],
+  "r": 8,
+  "type": "movie",
+  "ng": 0,
+  "d": "A family restaurant fights to survive its busiest, and most revealing, season.",
+  "h": 282,
+  "cast": [
+   "Mira Solano",
+   "Idris Vale",
+   "Dayo Fashola",
+   "Theo Marsh"
+  ],
+  "c": "France"
+ },
+ {
+  "id": 7,
+  "t": "Velocity Run",
+  "y": 2025,
+  "g": [
+   "Action"
+  ],
+  "r": 7.6,
+  "type": "movie",
+  "ng": 0,
+  "d": "A retired driver takes one last job across three borders in under twelve hours.",
+  "h": 329,
+  "cast": [
+   "Idris Vale",
+   "Lena Ortiz",
+   "Funmi Alade",
+   "Ada Okoye"
+  ],
+  "c": "South Africa"
+ },
+ {
+  "id": 8,
+  "t": "Aunty Knows Best",
+  "y": 2025,
+  "g": [
+   "Comedy"
+  ],
+  "r": 7.8,
+  "type": "movie",
+  "ng": 1,
+  "d": "A matchmaking aunty meets her toughest clients yet: her own nephews.",
+  "h": 16,
+  "cast": [
+   "Lena Ortiz",
+   "Sam Kerrigan",
+   "Ivy Lowell",
+   "Jonas Reed"
+  ],
+  "c": "Nigeria"
+ },
+ {
+  "id": 9,
+  "t": "Paper Kingdoms",
+  "y": 2023,
+  "g": [
+   "Fantasy",
+   "Drama"
+  ],
+  "r": 8.5,
+  "type": "series",
+  "ng": 0,
+  "d": "Rival houses of folded paper wage a quiet war over a kingdom that keeps changing shape.",
+  "h": 63,
+  "cast": [
+   "Sam Kerrigan",
+   "Chidi Eze",
+   "Mira Solano",
+   "Zara Whitlock"
+  ],
+  "c": "South Korea"
+ },
+ {
+  "id": 10,
+  "t": "Harmattan Road",
+  "y": 2026,
+  "g": [
+   "Drama",
+   "Thriller"
+  ],
+  "r": 8.2,
+  "type": "movie",
+  "ng": 1,
+  "d": "A long dusty drive north reveals what a widow's brothers have been hiding.",
+  "h": 110,
+  "cast": [
+   "Chidi Eze",
+   "Tobi Adewale",
+   "Idris Vale",
+   "Dayo Fashola"
+  ],
+  "c": "Nigeria"
+ },
+ {
+  "id": 11,
+  "t": "Midnight Laugh Club",
+  "y": 2024,
+  "g": [
+   "Comedy"
+  ],
+  "r": 7.4,
+  "type": "series",
+  "ng": 0,
+  "d": "Struggling comedians share one stage, one microphone and a lot of bad ideas.",
+  "h": 157,
+  "cast": [
+   "Tobi Adewale",
+   "Kemi Bakare",
+   "Lena Ortiz",
+   "Funmi Alade"
+  ],
+  "c": "United States"
+ },
+ {
+  "id": 12,
+  "t": "Iron Meridian",
+  "y": 2025,
+  "g": [
+   "Action",
+   "Sci-Fi"
+  ],
+  "r": 7.9,
+  "type": "movie",
+  "ng": 0,
+  "d": "Miners on a distant moon find something that is waking up beneath the ice.",
+  "h": 204,
+  "cast": [
+   "Kemi Bakare",
+   "Emeka Nwosu",
+   "Sam Kerrigan",
+   "Ivy Lowell"
+  ],
+  "c": "United States"
+ },
+ {
+  "id": 13,
+  "t": "The Quiet Tide",
+  "y": 2022,
+  "g": [
+   "Drama"
+  ],
+  "r": 8.6,
+  "type": "movie",
+  "ng": 0,
+  "d": "A marine biologist returns to her fishing village after twenty years away.",
+  "h": 251,
+  "cast": [
+   "Emeka Nwosu",
+   "Noor Haddad",
+   "Chidi Eze",
+   "Mira Solano"
+  ],
+  "c": "United Kingdom"
+ },
+ {
+  "id": 14,
+  "t": "Mama Put Mysteries",
+  "y": 2025,
+  "g": [
+   "Comedy",
+   "Mystery"
+  ],
+  "r": 8,
+  "type": "series",
+  "ng": 1,
+  "d": "A canteen owner solves neighborhood crimes between lunch rushes.",
+  "h": 298,
+  "cast": [
+   "Noor Haddad",
+   "Theo Marsh",
+   "Tobi Adewale",
+   "Idris Vale"
+  ],
+  "c": "Ghana"
+ },
+ {
+  "id": 15,
+  "t": "Echoes of Zamora",
+  "y": 2026,
+  "g": [
+   "Fantasy",
+   "Action"
+  ],
+  "r": 8.3,
+  "type": "series",
+  "ng": 0,
+  "d": "A young cartographer finds that her maps are rewriting the world.",
+  "h": 345,
+  "cast": [
+   "Theo Marsh",
+   "Ada Okoye",
+   "Kemi Bakare",
+   "Lena Ortiz"
+  ],
+  "c": "Spain"
+ },
+ {
+  "id": 16,
+  "t": "Wedding Season",
+  "y": 2026,
+  "g": [
+   "Comedy",
+   "Romance"
+  ],
+  "r": 7.7,
+  "type": "movie",
+  "ng": 1,
+  "d": "A wedding planner books four weddings in one weekend, and one groom is her ex.",
+  "h": 32,
+  "cast": [
+   "Ada Okoye",
+   "Jonas Reed",
+   "Emeka Nwosu",
+   "Sam Kerrigan"
+  ],
+  "c": "Nigeria"
+ },
+ {
+  "id": 17,
+  "t": "Shadow Protocol",
+  "y": 2024,
+  "g": [
+   "Action",
+   "Thriller"
+  ],
+  "r": 7.8,
+  "type": "movie",
+  "ng": 0,
+  "d": "An analyst realizes the agency's newest rule exists to protect one name.",
+  "h": 79,
+  "cast": [
+   "Jonas Reed",
+   "Zara Whitlock",
+   "Noor Haddad",
+   "Chidi Eze"
+  ],
+  "c": "United Kingdom"
+ },
+ {
+  "id": 18,
+  "t": "Glass Orchard",
+  "y": 2023,
+  "g": [
+   "Drama",
+   "Mystery"
+  ],
+  "r": 8.1,
+  "type": "movie",
+  "ng": 0,
+  "d": "Every tree in a mountain orchard is tagged with a different lie.",
+  "h": 126,
+  "cast": [
+   "Zara Whitlock",
+   "Dayo Fashola",
+   "Theo Marsh",
+   "Tobi Adewale"
+  ],
+  "c": "France"
+ },
+ {
+  "id": 19,
+  "t": "Gidi Gold",
+  "y": 2025,
+  "g": [
+   "Action",
+   "Drama"
+  ],
+  "r": 8,
+  "type": "series",
+  "ng": 1,
+  "d": "A street-smart crew chases a legendary prize across the city's markets and rooftops.",
+  "h": 173,
+  "cast": [
+   "Dayo Fashola",
+   "Funmi Alade",
+   "Ada Okoye",
+   "Kemi Bakare"
+  ],
+  "c": "Nigeria"
+ },
+ {
+  "id": 20,
+  "t": "Funny Business",
+  "y": 2026,
+  "g": [
+   "Comedy"
+  ],
+  "r": 7.2,
+  "type": "movie",
+  "ng": 0,
+  "d": "Two rival bakeries accidentally merge on the same day.",
+  "h": 220,
+  "cast": [
+   "Funmi Alade",
+   "Ivy Lowell",
+   "Jonas Reed",
+   "Emeka Nwosu"
+  ],
+  "c": "India"
+ },
+ {
+  "id": 21,
+  "t": "Starlit Verdict",
+  "y": 2024,
+  "g": [
+   "Drama"
+  ],
+  "r": 8.4,
+  "type": "series",
+  "ng": 0,
+  "d": "A small-town court hears one case that stretches over a single summer.",
+  "h": 267,
+  "cast": [
+   "Ivy Lowell",
+   "Mira Solano",
+   "Zara Whitlock",
+   "Noor Haddad"
+  ],
+  "c": "India"
+ },
+ {
+  "id": 22,
+  "t": "Redline Savannah",
+  "y": 2025,
+  "g": [
+   "Action",
+   "Adventure"
+  ],
+  "r": 7.9,
+  "type": "movie",
+  "ng": 0,
+  "d": "A rescue pilot races a storm front across open plains to reach a stranded convoy.",
+  "h": 314,
+  "cast": [
+   "Mira Solano",
+   "Idris Vale",
+   "Dayo Fashola",
+   "Theo Marsh"
+  ],
+  "c": "Kenya"
+ },
+ {
+  "id": 23,
+  "t": "The Baker's Secret",
+  "y": 2022,
+  "g": [
+   "Comedy",
+   "Drama"
+  ],
+  "r": 7.5,
+  "type": "movie",
+  "ng": 0,
+  "d": "A beloved recipe goes missing and the whole street becomes a suspect.",
+  "h": 1,
+  "cast": [
+   "Idris Vale",
+   "Lena Ortiz",
+   "Funmi Alade",
+   "Ada Okoye"
+  ],
+  "c": "France"
+ },
+ {
+  "id": 24,
+  "t": "Lagos After Dark",
+  "y": 2026,
+  "g": [
+   "Thriller",
+   "Drama"
+  ],
+  "r": 8.5,
+  "type": "series",
+  "ng": 1,
+  "d": "A night-shift paramedic keeps stumbling onto the same hidden story.",
+  "h": 48,
+  "cast": [
+   "Lena Ortiz",
+   "Sam Kerrigan",
+   "Ivy Lowell",
+   "Jonas Reed"
+  ],
+  "c": "Nigeria"
+ }
+]
